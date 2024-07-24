@@ -13,7 +13,7 @@ services:
       - .:/var/www/html
     working_dir: /var/www/html
     ports:
-      - "8080:8000"
+      - "${PORTA_APP:-8080}:${PORTA_APP:-8080}"
     environment:
       - XDEBUG_MODE=${XDEBUG_MODE:-"on"}
       - PHP_IDE_CONFIG=${PHP_IDE_CONFIG:-serverName=docker}
