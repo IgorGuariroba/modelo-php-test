@@ -1,2 +1,2 @@
-# php-composer
-Biblioteca para lista os projetos do git
+# modelo php teste
+Uma base configurada para phpunit test
