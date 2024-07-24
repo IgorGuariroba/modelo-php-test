@@ -1,0 +1,21 @@
+{
+  "name": "igorguariroba/php-composer",
+  "description": "exibir os projetos do github",
+  "version": "1.0.0",
+  "type": "library",
+  "license": "mit",
+  "autoload": {
+    "psr-4": {
+      "Igorguariroba\\PhpComposer\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Igor Guariroba"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require-dev": {
+    "phpunit/phpunit": "^11"
+  }
+}
