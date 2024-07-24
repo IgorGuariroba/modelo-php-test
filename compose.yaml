@@ -1,0 +1,12 @@
+name: "php_composer"
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php_container
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    ports:
+      - "8000:8000"
