@@ -5,10 +5,21 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip \
     zip \
-    libzip-dev
+    libzip-dev \
+    autoconf \
+    g++ \
+    make \
+    pkg-config
 
 # Instala a extensão zip do PHP
 RUN docker-php-ext-install zip
+
+# Instala o Xdebug
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+
+# Copia o arquivo de configuração do Xdebug
+COPY xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # Cria um usuário não-root
 RUN useradd -m -s /bin/bash composer

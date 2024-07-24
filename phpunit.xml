@@ -8,10 +8,21 @@
          beStrictAboutCoverageMetadata="true"
          beStrictAboutOutputDuringTests="true"
          failOnRisky="true"
-         failOnWarning="true">
+         failOnWarning="true"
+         colors="true"
+         testdox="true"
+>
     <testsuites>
         <testsuite name="default">
-            <directory>tests</directory>
+            <directory>tests/unit</directory>
+        </testsuite>
+
+        <testsuite name="integration">
+            <directory>tests/integration</directory>
+        </testsuite>
+
+        <testsuite name="edge-to-edge">
+            <directory>tests/edge-to-edge</directory>
         </testsuite>
     </testsuites>
 
@@ -20,4 +31,12 @@
             <directory>src</directory>
         </include>
     </source>
+    <logging>
+        <testdoxText outputFile="testdox.txt"/>
+    </logging>
+    <coverage>
+        <report>
+            <text outputFile="coverage.txt" showUncoveredFiles="false" showOnlySummary="true"/>
+        </report>
+    </coverage>
 </phpunit>

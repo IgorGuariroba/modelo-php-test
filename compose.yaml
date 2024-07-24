@@ -1,12 +1,15 @@
-name: "php_composer"
+name: "phpdocker"
 services:
   php:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: php_container
+    container_name: phpdocker
     volumes:
       - .:/var/www/html
     working_dir: /var/www/html
     ports:
-      - "8000:8000"
+      - "8080:8000"
+    environment:
+      - XDEBUG_MODE=${XDEBUG_MODE}
+      - PHP_IDE_CONFIG=${PHP_IDE_CONFIG}
