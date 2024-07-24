@@ -4,6 +4,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+       - PHP_VERSION=${PHP_VERSION:-8.3.9}
+    user: "${USER_ID:-1000}:${GROUP_ID:-1000}"
+    restart: unless-stopped
     container_name: phpdocker
     volumes:
       - .:/var/www/html
@@ -11,5 +15,17 @@ services:
     ports:
       - "8080:8000"
     environment:
-      - XDEBUG_MODE=${XDEBUG_MODE}
-      - PHP_IDE_CONFIG=${PHP_IDE_CONFIG}
+      - XDEBUG_MODE=${XDEBUG_MODE:-"on"}
+      - PHP_IDE_CONFIG=${PHP_IDE_CONFIG:-serverName=docker}
+      - XDEBUG_CONFIG=${XDEBUG_CONFIG:-client_host=host.docker.internal}
+      - ERROR_REPORTING=${ERROR_REPORTING:-`"E_ALL & ~E_DEPRECATED & ~E_STRICT"`}
+      - XDEBUG_TRIGGER=${XDEBUG_TRIGGER:-yes}
+      - XDEBUG_LOG=${XDEBUG_LOG:-/path/to/xdebug.log}
+      - PHP_TIMEZONE=${PHP_TIMEZONE:-UTC}
+      - XDEBUG_MAX_NESTING_LEVEL=${XDEBUG_MAX_NESTING_LEVEL:-256}
+      - MEMORY_LIMIT=${MEMORY_LIMIT:-256M}
+    extra_hosts:
+      - host.docker.internal:${HOST_IP:-172.17.0.1}
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
