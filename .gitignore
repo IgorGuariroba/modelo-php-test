@@ -3,3 +3,4 @@
 .env
 testdox.txt
 xdebug.ini
+/.phpunit.cache/test-results
