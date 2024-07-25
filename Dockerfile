@@ -22,6 +22,15 @@ RUN pecl install xdebug \
 # Copia o arquivo de configuração do Xdebug
 COPY xdebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
+# Copiar arquivos de configuração personalizados, se necessário
+COPY php.ini /usr/local/etc/php/
+
+# Crie o diretório de logs do Xdebug
+RUN mkdir -p /var/log
+
+# Conceda permissões apropriadas para o diretório de logs
+RUN chmod -R 777 /var/log
+
 # Cria um usuário não-root
 RUN useradd -m -s /bin/bash composer
 
@@ -33,4 +42,6 @@ USER composer
 
 WORKDIR /var/www/html
 
-CMD ["php", "-S", "0.0.0.0:8000"]
+COPY . .
+
+CMD ["php", "-S", "0.0.0.0:8080","public/index.php"]
