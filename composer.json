@@ -25,6 +25,11 @@
     "test": "phpunit",
     "cs": "phpcs --standard=PSR12 src/",
     "phan": "phan --allow-polyfill-parser",
-    "test:watch": "phpunit-watcher watch"
+    "test:watch": "phpunit-watcher watch",
+    "check": [
+      "@phan",
+      "@cs",
+      "@test"
+    ]
   }
 }
